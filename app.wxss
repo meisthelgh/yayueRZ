@@ -1,0 +1,17 @@
+@import './miniprogram_npm/@vant/weapp/common/index.wxss';
+
+page {
+  background-color: #f7f5f2;
+  color: #2c2a28;
+}
+
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}

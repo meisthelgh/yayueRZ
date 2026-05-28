@@ -1,0 +1,229 @@
+<view class="home-page">
+  <view class="home-header" style="padding-top: {{statusBarHeight}}px;">
+    <view class="search-wrap">
+      <van-search
+        value="{{ searchValue }}"
+        shape="round"
+        placeholder="搜索家具、软装、空间灵感"
+        background="transparent"
+        bind:change="onSearchChange"
+        bind:search="onSearch"
+      />
+    </view>
+  </view>
+
+  <scroll-view class="home-scroll" scroll-y>
+    <view class="banner-section">
+      <swiper
+        class="home-swipe"
+        autoplay
+        circular
+        interval="{{ 4500 }}"
+        duration="{{ 500 }}"
+        indicator-dots
+        indicator-color="rgba(255,255,255,0.45)"
+        indicator-active-color="#6B6458"
+      >
+        <swiper-item wx:for="{{ banners }}" wx:key="id">
+          <view
+            class="banner-card banner-card--{{ item.theme }}"
+            data-id="{{ item.id }}"
+            bindtap="onBannerTap"
+          >
+            <view class="banner-card__content">
+              <text class="banner-card__tag">{{ item.tag }}</text>
+              <text class="banner-card__title">{{ item.title }}</text>
+              <text class="banner-card__desc">{{ item.desc }}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="space-section">
+      <view class="section-head">
+        <text class="section-title">空间专区</text>
+        
+      </view>
+
+      <view class="space-card">
+        <view class="space-grid">
+          <view
+            class="space-item"
+            wx:for="{{ primarySpaces }}"
+            wx:key="id"
+            data-name="{{ item.name }}"
+            bindtap="onSpaceTap"
+          >
+            <view class="space-thumb" style="background-color: {{ item.bgColor }};">
+              <text class="space-thumb__text">{{ item.abbr }}</text>
+            </view>
+            <text class="space-name">{{ item.name }}</text>
+          </view>
+        </view>
+
+        <view class="space-grid-extra {{ spaceExpanded ? 'is-expanded' : '' }}">
+          <view class="space-grid">
+            <view
+              class="space-item"
+              wx:for="{{ extraSpaces }}"
+              wx:key="id"
+              data-name="{{ item.name }}"
+              bindtap="onSpaceTap"
+            >
+              <view class="space-thumb" style="background-color: {{ item.bgColor }};">
+                <text class="space-thumb__text">{{ item.abbr }}</text>
+              </view>
+              <text class="space-name">{{ item.name }}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="expand-row" bindtap="toggleSpaceExpand">
+          <text class="expand-text">{{ spaceExpanded ? '收起' : '展开更多' }}</text>
+          <text class="expand-arrow {{ spaceExpanded ? 'is-up' : '' }}">⌄</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="inspire-section">
+      <view class="inspire-head">
+        <text class="inspire-title">搭配灵感</text>
+        <text class="inspire-more" bindtap="onInspireSeeMore">See More &gt;</text>
+      </view>
+
+      <scroll-view class="mood-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+        <view class="mood-tags">
+          <view
+            class="mood-tag {{ activeMoodId === item.id ? 'mood-tag--active' : '' }}"
+            wx:for="{{ moodTags }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onMoodTagTap"
+          >
+            <text class="mood-tag__text">{{ item.name }}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <scroll-view class="inspire-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+        <view class="inspire-list">
+          <view
+            class="inspire-card"
+            wx:for="{{ inspireList }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onInspireCardTap"
+          >
+            <view class="inspire-card__cover inspire-card__cover--{{ item.theme }}">
+              <view class="inspire-card__stats">
+                <view class="inspire-stat">
+                  <van-icon name="like-o" size="28rpx" color="#ffffff" />
+                  <text class="inspire-stat__num">{{ item.likes }}</text>
+                </view>
+                <view class="inspire-stat">
+                  <van-icon name="star-o" size="28rpx" color="#ffffff" />
+                  <text class="inspire-stat__num">{{ item.favorites }}</text>
+                </view>
+              </view>
+            </view>
+            <view class="inspire-card__body">
+              <text class="inspire-card__title">{{ item.title }}</text>
+              <text class="inspire-card__desc">{{ item.desc }}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="ugc-section">
+      <view class="ugc-head">
+        <text class="ugc-title">用户晒单</text>
+        <text class="ugc-more" bindtap="onUgcSeeMore">See More &gt;</text>
+      </view>
+
+      <scroll-view class="ugc-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+        <view class="ugc-list">
+          <view
+            class="ugc-card"
+            wx:for="{{ ugcList }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onUgcCardTap"
+          >
+            <view class="ugc-card__cover ugc-card__cover--{{ item.theme }}">
+              <text class="ugc-card__badge">实拍</text>
+              <view class="ugc-card__stats">
+                <view class="ugc-stat">
+                  <van-icon name="like-o" size="28rpx" color="#ffffff" />
+                  <text class="ugc-stat__num">{{ item.likes }}</text>
+                </view>
+                <view class="ugc-stat">
+                  <van-icon name="chat-o" size="28rpx" color="#ffffff" />
+                  <text class="ugc-stat__num">{{ item.comments }}</text>
+                </view>
+              </view>
+            </view>
+            <view class="ugc-card__body">
+              <text class="ugc-card__title">{{ item.title }}</text>
+              <text class="ugc-card__desc">{{ item.desc }}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="guess-section">
+      <view class="guess-head">
+        <text class="guess-title">猜你喜欢</text>
+      </view>
+
+      <van-tabs
+        active="{{ guessTabIndex }}"
+        bind:change="onGuessTabChange"
+        color="#6b6458"
+        title-active-color="#2c2a28"
+        title-inactive-color="#9a948a"
+        line-width="56"
+        scrollable
+        custom-class="guess-tabs"
+      >
+        <van-tab title="Recommended for You" />
+        <van-tab title="New" />
+        <van-tab title="Top Picks" />
+      </van-tabs>
+
+      <view class="guess-feed">
+        <view
+          class="guess-card"
+          wx:for="{{ guessProductList }}"
+          wx:key="id"
+          data-id="{{ item.id }}"
+          bindtap="onGuessProductTap"
+        >
+          <view class="guess-card__cover">
+            <image
+              wx:if="{{ item.image }}"
+              class="guess-card__cover-img"
+              src="{{ item.image }}"
+              mode="aspectFill"
+            />
+            <view
+              wx:else
+              class="guess-card__cover-placeholder guess-card__cover-placeholder--{{ item.coverTheme }}"
+            ></view>
+          </view>
+          <view class="guess-card__body">
+            <text class="guess-card__name">{{ item.title }}</text>
+            <text class="guess-card__desc">{{ item.desc }}</text>
+            <view class="guess-card__price-row">
+              <text class="guess-card__price">¥{{ item.price }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="home-bottom-spacer"></view>
+  </scroll-view>
+</view>

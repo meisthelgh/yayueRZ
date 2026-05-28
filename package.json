@@ -1,0 +1,8 @@
+{
+  "name": "yayueRZ",
+  "version": "1.0.0",
+  "description": "中古软装商城小程序",
+  "dependencies": {
+    "@vant/weapp": "^1.11.7"
+  }
+}

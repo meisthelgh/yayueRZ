@@ -8,6 +8,7 @@
           <text class="profile-welcome__brand">雅悦</text>
           <text class="profile-welcome__text">的家</text>
         </view>
+        <text class="profile-welcome__subtitle">把喜欢的生活慢慢收藏</text>
       </view>
       <view class="profile-welcome__service" bindtap="onServiceTap">
         <van-icon name="service-o" size="40rpx" color="#3E3128" />
@@ -15,7 +16,7 @@
     </view>
 
     <view class="profile-welcome__body">
-      <text class="profile-welcome__subtitle">把喜欢的生活慢慢收藏</text>
+
       <view class="profile-login-wrap">
         <view class="profile-login-btn" bindtap="onLoginTap">
           <text class="profile-login-btn__text">登录 / 注册</text>

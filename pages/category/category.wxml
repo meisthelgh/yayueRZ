@@ -1,3 +1,68 @@
-<view class="page">
-  <text class="title">分类</text>
+<view class="category-page">
+  <view class="search-wrap">
+    <van-search
+      value="{{ searchValue }}"
+      shape="round"
+      placeholder="搜索家具、软装、空间灵感"
+      background="transparent"
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+    />
+  </view>
+
+  <view class="category-body" style="height: {{ bodyHeight }}px;">
+    <scroll-view
+      class="sidebar-scroll"
+      scroll-y
+      style="height: {{ bodyHeight }}px;"
+      show-scrollbar="{{ false }}"
+    >
+      <van-sidebar
+        active-key="{{ activeKey }}"
+        bind:change="onCategoryChange"
+        custom-class="category-sidebar"
+      >
+        <van-sidebar-item
+          wx:for="{{ categories }}"
+          wx:key="id"
+          title="{{ item.name }}"
+        />
+      </van-sidebar>
+    </scroll-view>
+
+    <scroll-view
+      class="product-scroll"
+      scroll-y
+      style="height: {{ bodyHeight }}px;"
+      scroll-top="{{ productScrollTop }}"
+      show-scrollbar="{{ false }}"
+    >
+      <view class="product-feed">
+        <view
+          class="product-card"
+          wx:for="{{ productList }}"
+          wx:key="id"
+          data-id="{{ item.id }}"
+          bindtap="onProductTap"
+        >
+          <view class="product-card__cover">
+            <image
+              wx:if="{{ item.image }}"
+              class="product-card__cover-img"
+              src="{{ item.image }}"
+              mode="aspectFill"
+            />
+            <view
+              wx:else
+              class="product-card__cover-placeholder product-card__cover-placeholder--{{ item.coverTheme }}"
+            ></view>
+          </view>
+          <view class="product-card__body">
+            <text class="product-card__name">{{ item.name }}</text>
+          </view>
+        </view>
+      </view>
+      <view class="product-scroll-spacer"></view>
+    </scroll-view>
+  </view>
 </view>

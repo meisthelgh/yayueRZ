@@ -1,3 +1,156 @@
-<view class="page">
-  <text class="title">灵感</text>
+<view class="inspiration-page">
+  <view class="search-wrap">
+    <van-search
+      value="{{ searchValue }}"
+      shape="round"
+      placeholder="搜索中古客厅、复古灯光、咖啡馆氛围…"
+      background="transparent"
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+    />
+  </view>
+
+  <scroll-view class="main-scroll" scroll-y>
+    <!-- 话题集：横向低矮专题卡 -->
+    <view class="topic-section">
+      <scroll-view class="topic-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+        <view class="topic-list">
+          <view
+            class="topic-card"
+            wx:for="{{ topics }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onTopicTap"
+          >
+            <view class="topic-card__thumb topic-card__thumb--{{ item.theme }}"></view>
+            <view class="topic-card__info">
+              <text class="topic-card__title">{{ item.title }}</text>
+              <text class="topic-card__meta">{{ item.inspirations }}灵感 · {{ item.views }}浏览</text>
+              <text class="topic-card__desc">{{ item.desc }}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 胶囊筛选器 -->
+    <view class="filter-section">
+      <scroll-view class="capsule-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+        <view class="capsule-row">
+          <view
+            class="capsule {{ activeMainTab === item.id ? 'capsule--active' : '' }}"
+            wx:for="{{ mainTabs }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onMainTabTap"
+          >
+            <text class="capsule__text">{{ item.name }}</text>
+            <text
+              wx:if="{{ item.dropdown }}"
+              class="capsule__arrow {{ activeMainTab === item.id && panelOpen ? 'is-up' : '' }}"
+            >⌄</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 空间 / 氛围 下拉筛选面板 -->
+      <view
+        class="filter-panel {{ panelOpen && (activeMainTab === 'space' || activeMainTab === 'mood') ? 'is-show' : '' }}"
+      >
+        <view class="filter-panel__inner">
+          <view class="filter-panel__tags">
+            <view
+              class="filter-tag {{ activeFilterId === item.id ? 'filter-tag--active' : '' }}"
+              wx:for="{{ panelTags }}"
+              wx:key="id"
+              data-id="{{ item.id }}"
+              bindtap="onFilterTagTap"
+            >
+              <text class="filter-tag__text">{{ item.name }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 轻瀑布内容流 -->
+    <view class="feed-section">
+      <view class="feed-waterfall">
+        <view class="feed-col">
+          <view
+            class="feed-card"
+            wx:for="{{ feedLeftList }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onFeedTap"
+          >
+            <view class="feed-card__cover" style="height: {{ item.coverHeight }}rpx;">
+              <image
+                wx:if="{{ item.image }}"
+                class="feed-card__cover-img"
+                src="{{ item.image }}"
+                mode="aspectFill"
+              />
+              <view
+                wx:else
+                class="feed-card__cover-placeholder feed-card__cover-placeholder--{{ item.coverTheme }}"
+              ></view>
+            </view>
+            <view class="feed-card__body">
+              <text class="feed-card__title">{{ item.title }}</text>
+              <text class="feed-card__desc">{{ item.desc }}</text>
+              <view class="feed-card__footer">
+                <view class="feed-stat">
+                  <van-icon name="like-o" size="28rpx" color="#9a948a" />
+                  <text class="feed-stat__num">{{ item.likes }}</text>
+                </view>
+                <view class="feed-stat">
+                  <van-icon name="star-o" size="28rpx" color="#9a948a" />
+                  <text class="feed-stat__num">{{ item.favorites }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="feed-col">
+          <view
+            class="feed-card"
+            wx:for="{{ feedRightList }}"
+            wx:key="id"
+            data-id="{{ item.id }}"
+            bindtap="onFeedTap"
+          >
+            <view class="feed-card__cover" style="height: {{ item.coverHeight }}rpx;">
+              <image
+                wx:if="{{ item.image }}"
+                class="feed-card__cover-img"
+                src="{{ item.image }}"
+                mode="aspectFill"
+              />
+              <view
+                wx:else
+                class="feed-card__cover-placeholder feed-card__cover-placeholder--{{ item.coverTheme }}"
+              ></view>
+            </view>
+            <view class="feed-card__body">
+              <text class="feed-card__title">{{ item.title }}</text>
+              <text class="feed-card__desc">{{ item.desc }}</text>
+              <view class="feed-card__footer">
+                <view class="feed-stat">
+                  <van-icon name="like-o" size="28rpx" color="#9a948a" />
+                  <text class="feed-stat__num">{{ item.likes }}</text>
+                </view>
+                <view class="feed-stat">
+                  <van-icon name="star-o" size="28rpx" color="#9a948a" />
+                  <text class="feed-stat__num">{{ item.favorites }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-bottom-spacer"></view>
+  </scroll-view>
 </view>

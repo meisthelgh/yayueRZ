@@ -1,14 +1,279 @@
-.page {
+page {
+  background-color: #f7f3ed;
+  height: 100%;
+}
+
+.cart-page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
+  flex-direction: column;
+  background-color: #f7f3ed;
+  box-sizing: border-box;
   padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+.cart-header {
+  flex-shrink: 0;
+  padding: 20rpx 48rpx 12rpx;
+}
+
+.cart-header__title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #3e3128;
+  letter-spacing: 2rpx;
+}
+
+.cart-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 48rpx 64rpx;
   box-sizing: border-box;
 }
 
-.title {
-  font-size: 36rpx;
-  color: #111111;
+.cart-hero {
+  width: 100%;
+  height: 440rpx;
+  border-radius: 28rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 8rpx 40rpx rgba(62, 49, 40, 0.06);
+}
+
+.cart-hero__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 轻中古 · 暖光客厅占位场景 */
+.cart-hero__placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(165deg, #f5ede3 0%, #ede4d8 45%, #e6ddd0 100%);
+  overflow: hidden;
+}
+
+.cart-hero__window-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 248, 238, 0.9) 0%, transparent 70%);
+}
+
+.cart-hero__glow {
+  position: absolute;
+  top: 60rpx;
+  right: 72rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 210, 160, 0.45) 0%, transparent 68%);
+}
+
+.cart-hero__lamp-pole {
+  position: absolute;
+  top: 88rpx;
+  right: 108rpx;
+  width: 6rpx;
+  height: 100rpx;
+  background: linear-gradient(180deg, #c4a882 0%, #a88b6a 100%);
+  border-radius: 3rpx;
+}
+
+.cart-hero__lamp-shade {
+  position: absolute;
+  top: 68rpx;
+  right: 92rpx;
+  width: 44rpx;
+  height: 28rpx;
+  background-color: #e8d4b8;
+  border-radius: 8rpx 8rpx 4rpx 4rpx;
+}
+
+.cart-hero__plant {
+  position: absolute;
+  bottom: 100rpx;
+  left: 48rpx;
+  width: 48rpx;
+  height: 80rpx;
+}
+
+.cart-hero__plant-pot {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36rpx;
+  height: 28rpx;
+  background-color: #d4c4b0;
+  border-radius: 4rpx 4rpx 8rpx 8rpx;
+}
+
+.cart-hero__plant-leaf {
+  position: absolute;
+  background-color: #a8b89a;
+  border-radius: 50% 50% 50% 0;
+}
+
+.cart-hero__plant-leaf--1 {
+  bottom: 24rpx;
+  left: 4rpx;
+  width: 28rpx;
+  height: 36rpx;
+  transform: rotate(-20deg);
+}
+
+.cart-hero__plant-leaf--2 {
+  bottom: 28rpx;
+  right: 2rpx;
+  width: 24rpx;
+  height: 32rpx;
+  transform: rotate(25deg);
+  background-color: #b5c4a8;
+}
+
+.cart-hero__sofa {
+  position: absolute;
+  bottom: 72rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300rpx;
+  height: 96rpx;
+}
+
+.cart-hero__sofa-seat {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52rpx;
+  background: linear-gradient(180deg, #ede0d0 0%, #e0d0bc 100%);
+  border-radius: 14rpx 14rpx 8rpx 8rpx;
+}
+
+.cart-hero__sofa-cushion {
+  position: absolute;
+  bottom: 36rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120rpx;
+  height: 28rpx;
+  background-color: #f0e6d8;
+  border-radius: 8rpx;
+}
+
+.cart-hero__sofa-arm {
+  position: absolute;
+  bottom: 32rpx;
+  width: 72rpx;
+  height: 44rpx;
+  background: linear-gradient(180deg, #e8dcc8 0%, #ddd0bc 100%);
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.cart-hero__sofa-arm--left {
+  left: 16rpx;
+}
+
+.cart-hero__sofa-arm--right {
+  right: 16rpx;
+}
+
+.cart-hero__table {
+  position: absolute;
+  bottom: 64rpx;
+  right: 56rpx;
+  width: 64rpx;
+  height: 48rpx;
+  background: linear-gradient(180deg, #c9a882 0%, #b8956e 100%);
+  border-radius: 6rpx;
+}
+
+.cart-hero__floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64rpx;
+  background: linear-gradient(180deg, transparent 0%, rgba(210, 195, 175, 0.35) 100%);
+}
+
+.cart-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 72rpx;
+  box-sizing: border-box;
+}
+
+.cart-content__title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #3e3128;
+  text-align: center;
+  line-height: 1.65;
+  letter-spacing: 1rpx;
+  padding: 0 24rpx;
+}
+
+.cart-content__subtitle {
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #8b7e74;
+  text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.5rpx;
+  padding: 0 32rpx;
+}
+
+.cart-btn {
+  width: 100%;
+  max-width: 520rpx;
+  height: 96rpx;
+  margin-top: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c69c6d;
+  border-radius: 48rpx;
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 24rpx rgba(198, 156, 109, 0.28);
+}
+
+.cart-btn__text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 3rpx;
+}
+
+.cart-link {
+  margin-top: 48rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 0;
+}
+
+.cart-link__text {
+  font-size: 24rpx;
+  color: #8b7e74;
+  letter-spacing: 0.5rpx;
+}
+
+.cart-link__arrow {
+  margin-left: 6rpx;
+  font-size: 26rpx;
+  color: #a89b90;
+  line-height: 1;
 }

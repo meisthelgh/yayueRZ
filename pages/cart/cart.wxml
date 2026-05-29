@@ -1,3 +1,49 @@
-<view class="page">
-  <text class="title">购物车</text>
+<view class="cart-page">
+  <view class="cart-header" style="padding-top: {{statusBarHeight}}px;">
+    <text class="cart-header__title">购物袋</text>
+  </view>
+
+  <view class="cart-body">
+    <view class="cart-hero">
+      <image
+        wx:if="{{ heroImage }}"
+        class="cart-hero__img"
+        src="{{ heroImage }}"
+        mode="aspectFill"
+      />
+      <view wx:else class="cart-hero__placeholder">
+        <view class="cart-hero__window-light"></view>
+        <view class="cart-hero__glow"></view>
+        <view class="cart-hero__lamp-shade"></view>
+        <view class="cart-hero__lamp-pole"></view>
+        <view class="cart-hero__plant">
+          <view class="cart-hero__plant-pot"></view>
+          <view class="cart-hero__plant-leaf cart-hero__plant-leaf--1"></view>
+          <view class="cart-hero__plant-leaf cart-hero__plant-leaf--2"></view>
+        </view>
+        <view class="cart-hero__sofa">
+          <view class="cart-hero__sofa-arm cart-hero__sofa-arm--left"></view>
+          <view class="cart-hero__sofa-arm cart-hero__sofa-arm--right"></view>
+          <view class="cart-hero__sofa-seat"></view>
+          <view class="cart-hero__sofa-cushion"></view>
+        </view>
+        <view class="cart-hero__table"></view>
+        <view class="cart-hero__floor"></view>
+      </view>
+    </view>
+
+    <view class="cart-content">
+      <text class="cart-content__title">登录后，把喜欢的中古灵感装进口袋</text>
+      <text class="cart-content__subtitle">同步收藏、购物袋与灵感清单</text>
+
+      <view class="cart-btn" bindtap="onLoginTap">
+        <text class="cart-btn__text">登录 / 注册</text>
+      </view>
+
+      <view class="cart-link" bindtap="onBizTap">
+        <text class="cart-link__text">企业采购 / 设计师合作</text>
+        <text class="cart-link__arrow">›</text>
+      </view>
+    </view>
+  </view>
 </view>

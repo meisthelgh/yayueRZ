@@ -1,3 +1,39 @@
-<view class="page">
-  <text class="title">我的</text>
+<view class="profile-page">
+  <view class="profile-welcome" style="padding-top: {{statusBarHeight}}px;">
+    <view class="profile-welcome__header">
+      <view class="profile-welcome__heading">
+        <text class="profile-welcome__line">欢迎</text>
+        <view class="profile-welcome__line profile-welcome__line--brand">
+          <text class="profile-welcome__text">来到</text>
+          <text class="profile-welcome__brand">雅悦</text>
+          <text class="profile-welcome__text">的家</text>
+        </view>
+      </view>
+      <view class="profile-welcome__service" bindtap="onServiceTap">
+        <van-icon name="service-o" size="40rpx" color="#3E3128" />
+      </view>
+    </view>
+
+    <view class="profile-welcome__body">
+      <text class="profile-welcome__subtitle">把喜欢的生活慢慢收藏</text>
+      <view class="profile-login-wrap">
+        <view class="profile-login-btn" bindtap="onLoginTap">
+          <text class="profile-login-btn__text">登录 / 注册</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="profile-body">
+    <view class="profile-list">
+      <view class="profile-list__item" bindtap="onOnlineServiceTap">
+        <text class="profile-list__title">在线客服</text>
+        <van-icon name="arrow" size="28rpx" color="#8B7E74" />
+      </view>
+      <view class="profile-list__item" bindtap="onFeedbackTap">
+        <text class="profile-list__title">我要反馈</text>
+        <van-icon name="arrow" size="28rpx" color="#8B7E74" />
+      </view>
+    </view>
+  </view>
 </view>
